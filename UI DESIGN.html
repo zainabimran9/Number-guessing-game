@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Number Guess Game</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+    .game-box {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #222;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s;
+    }
+    input:focus {
+      border-color: #00c6ff;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      background: #00c6ff;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0097e6;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-box">
+    <h2>Guess a Number (1–10)</h2>
+    <input type="number" id="userNumber" placeholder="Enter your guess" min="1" max="10" />
+    <button onclick="checkGuess()">Submit</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function checkGuess() {
+      const userNumber = parseInt(document.getElementById('userNumber').value);
+      const num = Math.floor(Math.random() * 10) + 1; // generates 1–10
+      const result = document.getElementById('result');
+
+      if (!userNumber || userNumber < 1 || userNumber > 10) {
+        result.textContent = "Enter a valid number between 1 and 10.";
+        result.style.color = "orange";
+        return;
+      }
+
+      if (userNumber === num) {
+        result.textContent = `🎉 You Won! The number was ${num}`;
+        result.style.color = "green";
+      } else {
+        result.textContent = `❌ You Lose! The number was ${num}`;
+        result.style.color = "red";
+      }
+
+      console.log("User Guess:", userNumber);
+      console.log("Random Number:", num);
+    }
+  </script>
+</body>
+</html>
